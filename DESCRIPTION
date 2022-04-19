@@ -1,0 +1,21 @@
+Package: scTernary
+Title: Ternary plot analysis for single cell RNA-seq data
+Version: 0.1.0
+Authors@R: 
+    person("Jinming", "Cheng", email="cheng.j@wehi.edu.au", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-3806-4694"))
+Description: Ternary plot analysis is an easy way to identify and annotate cell 
+    populations of single cell RNA-seq data. This package provides the functions
+    for the ternary plot analysis.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Depends: 
+    R (>= 2.10)
+LazyData: true
+Imports: 
+    gridExtra,
+    vcd
+Suggests: 
+    edgeR
