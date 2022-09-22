@@ -11,17 +11,15 @@ cell RNA-seq data.
 
 ## Installation
 
-You can install the released version of scTernary from
-[CRAN](https://CRAN.R-project.org) with:
+The *scTernary* package can be installed from GitHub by using:
 
 ``` r
-install.packages("scTernary")
 devtools::install_github("jinming-cheng/scTernary")
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example of drawing a ternary plot.
 
 ``` r
 library(scTernary)
