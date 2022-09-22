@@ -61,9 +61,14 @@ vcdTernaryPlot = function(data = NULL,
                           facet=FALSE,
                           title = NULL){
 
-  if(!is.null(group_color)){
-    group_color = group_color[1:length(group_levels)]
+  # if colors are not set, use the default colors
+  if(is.null(group_color)){
+    group_color = c("#6495ED", "#BF3EFF", "#FF3030", "#FFD700", "#ADFF2F",
+                    "#00FA9A", "#48D1CC", "#FFA500", "#FFC0CB", "#CD1076",
+                    "#EE82EE", "#FF00FF", "#8B6914", "#00FFFF", "#E5E5E5")
   }
+
+  group_color = group_color[1:length(group_levels)]
 
   # if group is null, not show legend
   if(is.null(group)){
