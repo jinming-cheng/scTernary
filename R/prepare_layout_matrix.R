@@ -2,6 +2,7 @@
 #'
 #' @param grobs_list A list of graphical objects (grobs)
 #' @param last_is_legend Whether last graphical object is legend
+#' @param n_col Number of columns for plotting
 #' @param scale_legend Scaled width of legend
 #'
 #' @export
@@ -15,6 +16,7 @@
 
 prepare_layout_matrix = function(grobs_list = NULL,
                                  last_is_legend = TRUE,
+                                 n_col = NULL,
                                  scale_legend = 1){
 
   ### combine plots using grid.arrange()
@@ -25,9 +27,10 @@ prepare_layout_matrix = function(grobs_list = NULL,
     n_grobs = n_grobs - 1
   }
 
-  my_ncol = ceiling(sqrt(n_grobs))
-  my_nrow = ifelse(my_ncol*(my_ncol-1) >= n_grobs,
-                   (my_ncol-1),my_ncol)
+  my_ncol = n_col
+  if(is.null(my_ncol)){my_ncol = ceiling(sqrt(n_grobs))}
+
+  my_nrow = ceiling(n_grobs/my_ncol)
 
   # add one more column for legend
   if(last_is_legend){

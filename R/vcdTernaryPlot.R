@@ -58,6 +58,7 @@ vcdTernaryPlot = function(data = NULL,
                           legend_text_size = 1.5,
                           legend_vertical_space = 1.5,
                           scale_legend = 0.5,
+                          n_col = NULL,
                           facet=FALSE,
                           title = NULL){
 
@@ -174,6 +175,7 @@ vcdTernaryPlot = function(data = NULL,
 
   my_layout_matrix = prepare_layout_matrix(grobs_list,
                                            last_is_legend = show_legend,
+                                           n_col = n_col,
                                            scale_legend   = scale_legend)
 
   gridExtra::grid.arrange( grobs = grobs_list,

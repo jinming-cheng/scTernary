@@ -23,6 +23,7 @@ vcdTernaryPlot(
   legend_text_size = 1.5,
   legend_vertical_space = 1.5,
   scale_legend = 0.5,
+  n_col = NULL,
   facet = FALSE,
   title = NULL
 )
@@ -64,6 +65,8 @@ if TRUE, the symbol size is plotted proportional to the row sum of the three var
 \item{legend_vertical_space}{Vertical space between legend texts, default is 1.5 (lines)}
 
 \item{scale_legend}{Scaled width of legend}
+
+\item{n_col}{Number of columns for plotting}
 
 \item{facet}{whether to show facets}
 

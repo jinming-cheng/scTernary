@@ -7,6 +7,7 @@
 prepare_layout_matrix(
   grobs_list = NULL,
   last_is_legend = TRUE,
+  n_col = NULL,
   scale_legend = 1
 )
 }
@@ -14,6 +15,8 @@ prepare_layout_matrix(
 \item{grobs_list}{A list of graphical objects (grobs)}
 
 \item{last_is_legend}{Whether last graphical object is legend}
+
+\item{n_col}{Number of columns for plotting}
 
 \item{scale_legend}{Scaled width of legend}
 }
