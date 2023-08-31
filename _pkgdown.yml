@@ -1,0 +1,37 @@
+url: https://github.com/jinming-cheng/scTernary/
+
+template:
+  params:
+    bootswatch: flatly
+    #ganalytics: UA-99999999-9
+
+home:
+  title: "scTernary"
+  type: inverse
+
+navbar:
+  right:
+   - icon: fa-github
+     href: https://github.com/jinming-cheng/scTernary/
+
+reference:
+- title: "Datasets"
+  desc: >
+    Data for example analyses
+  contents:
+  - anno_signature_genes_mouse
+  - example_dge_data
+- title: "Data preparing"
+  desc: >
+    Funtions for generating data for ternary plot from 10x scRNA-seq data, Fluidigm C1 scRNA-seq data or bulk RNA-seq data
+  contents:
+  - generate_data_for_ternary
+  - calculate_cv_by_row
+  - estimate_optimized_cutoffs
+- title: "Plotting"
+  desc: "Functions for drawing ternary plots"
+  contents:
+  - vcdTernaryPlot
+  - prepare_layout_matrix
+
+
