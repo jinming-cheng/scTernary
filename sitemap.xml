@@ -10,6 +10,12 @@
     <loc>https://github.com/jinming-cheng/scTernary/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://github.com/jinming-cheng/scTernary/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jinming-cheng/scTernary/articles/scTernary.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/jinming-cheng/scTernary/authors.html</loc>
   </url>
   <url>
@@ -26,6 +32,9 @@
   </url>
   <url>
     <loc>https://github.com/jinming-cheng/scTernary/reference/example_dge_data.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jinming-cheng/scTernary/reference/example_seu.html</loc>
   </url>
   <url>
     <loc>https://github.com/jinming-cheng/scTernary/reference/generate_data_for_ternary.html</loc>

@@ -42,6 +42,9 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
+  <a href="articles/scTernary.html">Get started</a>
+</li>
+<li>
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
@@ -68,139 +71,14 @@
 <div class="page-header"><h1 id="scternary">scTernary<a class="anchor" aria-label="anchor" href="#scternary"></a>
 </h1></div>
 <!-- badges: start -->
-<!-- badges: end -->
-<p>The goal of scTernary is to perform ternary plot analysis for single cell RNA-seq data.</p>
+
+<p>The goal of scTernary is to perform ternary plot analysis for single cell RNA-Seq data.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>The <em>scTernary</em> package can be installed from GitHub by using:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"jinming-cheng/scTernary"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
-</h2>
-<div class="section level3">
-<h3 id="a-simple-ternary-plot-analysis">A simple ternary plot analysis<a class="anchor" aria-label="anchor" href="#a-simple-ternary-plot-analysis"></a>
-</h3>
-<p>This is a basic example of drawing a ternary plot.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">scTernary</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">data_for_ternary</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Basal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>,</span>
-<span>                              ML    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,</span>
-<span>                              LP    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span> <span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/vcdTernaryPlot_functions.html">vcdTernaryPlot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_for_ternary</span>,</span>
-<span>               group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bas"</span>,<span class="st">"ML"</span>,<span class="st">"LP"</span><span class="op">)</span>,each<span class="op">=</span><span class="fl">3</span><span class="op">)</span>,</span>
-<span>               group_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bas"</span>,<span class="st">"LP"</span>,<span class="st">"ML"</span><span class="op">)</span>,</span>
-<span>               group_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>,<span class="st">"green"</span>,<span class="st">"blue"</span><span class="op">)</span>,</span>
-<span>               point_size <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>               legend_point_size <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-example-1.png" width="100%"></p>
-</div>
-<div class="section level3">
-<h3 id="ternary-plot-analysis-using-a-constant-cut-off">Ternary plot analysis using a constant cut-off<a class="anchor" aria-label="anchor" href="#ternary-plot-analysis-using-a-constant-cut-off"></a>
-</h3>
-<p>The ternary plot analysis using a constant cut-off can be applied to single cell RNA-seq data with raw count cut-off of 0. Here, we use a small bulk RNA-seq dataset to show the ternary plot analysis with a CPM cut-off of 100. The ternary plot analysis for Fluidigm C1 data is similar to that for bulk RNA-seq data.</p>
-<p>Example bulk RNA-seq data (using CPM)</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cpm</span> <span class="op">=</span> <span class="fu">edgeR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/edgeR/man/cpm.html" class="external-link">cpm</a></span><span class="op">(</span><span class="va">example_dge_data</span><span class="op">$</span><span class="va">counts</span><span class="op">)</span></span></code></pre></div>
-<p>Three samples for each group</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">example_dge_data</span><span class="op">$</span><span class="va">samples</span><span class="op">$</span><span class="va">group</span></span>
-<span><span class="co">#&gt; [1] LP    ML    Basal Basal ML    LP    Basal ML    LP   </span></span>
-<span><span class="co">#&gt; Levels: Basal LP ML</span></span></code></pre></div>
-<p>Generate data for ternary plot usng a CPM cut-off of 100</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data_for_ternary</span> <span class="op">=</span> <span class="fu"><a href="reference/generate_data_for_ternary.html">generate_data_for_ternary</a></span><span class="op">(</span></span>
-<span>  data_exp_mat <span class="op">=</span> <span class="va">cpm</span>,</span>
-<span>  anno_signature_genes <span class="op">=</span> <span class="va">anno_signature_genes_mouse</span>,</span>
-<span>  gene_name_col <span class="op">=</span> <span class="st">"GeneID"</span>,</span>
-<span>  gene_type_col <span class="op">=</span> <span class="st">"gene_type"</span>,</span>
-<span>  weight_by_gene_count <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  cutoff_exp <span class="op">=</span> <span class="fl">100</span>,</span>
-<span>  prior_count <span class="op">=</span> <span class="fl">2</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_for_ternary</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                Basal         LP         ML</span></span>
-<span><span class="co">#&gt; 10_6_5_11 0.02244898 0.34579439 0.07750473</span></span>
-<span><span class="co">#&gt; 9_6_5_11  0.02040816 0.16822430 0.29300567</span></span>
-<span><span class="co">#&gt; purep53   0.21020408 0.06074766 0.03402647</span></span>
-<span><span class="co">#&gt; JMS8-2    0.21496599 0.05841121 0.03591682</span></span>
-<span><span class="co">#&gt; JMS8-3    0.02380952 0.21495327 0.26654064</span></span>
-<span><span class="co">#&gt; JMS8-4    0.02040816 0.33878505 0.09451796</span></span></code></pre></div>
-<p>Drawing the ternary plot</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/vcdTernaryPlot_functions.html">vcdTernaryPlot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_for_ternary</span>,</span>
-<span>  order_colnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>,</span>
-<span>  group <span class="op">=</span> <span class="va">example_dge_data</span><span class="op">$</span><span class="va">samples</span><span class="op">$</span><span class="va">group</span>,</span>
-<span>  group_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>,<span class="st">"green"</span>,<span class="st">"blue"</span><span class="op">)</span>,</span>
-<span>  point_size <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  show_legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  legend_point_size <span class="op">=</span> <span class="fl">0.6</span>,</span>
-<span>  legend_position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>,<span class="fl">0.5</span><span class="op">)</span>,</span>
-<span>  scale_legend <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-TernaryPlotConstandCutoff-1.png" width="100%"></p>
-</div>
-<div class="section level3">
-<h3 id="ternary-plot-analysis-using-estimated-cut-offs">Ternary plot analysis using estimated cut-offs<a class="anchor" aria-label="anchor" href="#ternary-plot-analysis-using-estimated-cut-offs"></a>
-</h3>
-<p>We can also find the optimized cut-off for each sample (or cell) to calculate the signature gene proportion for the sample (or cell). The optimized cut-off is estimated by maximizing the coefficient of variation (CV) of the signature gene proportion by a grid search method.</p>
-<p>Example bulk RNA-seq data (using logCPM)</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">lcpm</span> <span class="op">=</span> <span class="fu">edgeR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/edgeR/man/cpm.html" class="external-link">cpm</a></span><span class="op">(</span><span class="va">example_dge_data</span><span class="op">$</span><span class="va">counts</span>,log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>Three samples for each group</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">example_dge_data</span><span class="op">$</span><span class="va">samples</span><span class="op">$</span><span class="va">group</span></span>
-<span><span class="co">#&gt; [1] LP    ML    Basal Basal ML    LP    Basal ML    LP   </span></span>
-<span><span class="co">#&gt; Levels: Basal LP ML</span></span></code></pre></div>
-<p>Estimate a optimized cut-off for each sample (or cell)</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">estimated_cutoffs</span> <span class="op">=</span> <span class="fu"><a href="reference/estimate_optimized_cutoffs.html">estimate_optimized_cutoffs</a></span><span class="op">(</span></span>
-<span>  data_exp_mat <span class="op">=</span> <span class="va">lcpm</span>,</span>
-<span>  anno_signature_genes <span class="op">=</span> <span class="va">anno_signature_genes_mouse</span>,</span>
-<span>  gene_name_col <span class="op">=</span> <span class="st">"GeneID"</span>,</span>
-<span>  gene_type_col <span class="op">=</span> <span class="st">"gene_type"</span>,</span>
-<span>  weight_by_gene_count <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  prior_count <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  do_parallel <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  n_cores <span class="op">=</span> <span class="fl">2</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p>Generate data for ternary plot</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data_for_ternary</span> <span class="op">=</span> <span class="fu"><a href="reference/generate_data_for_ternary.html">generate_data_for_ternary</a></span><span class="op">(</span></span>
-<span>  data_exp_mat <span class="op">=</span> <span class="va">lcpm</span>,</span>
-<span>  anno_signature_genes <span class="op">=</span> <span class="va">anno_signature_genes_mouse</span>,</span>
-<span>  gene_name_col <span class="op">=</span> <span class="st">"GeneID"</span>,</span>
-<span>  gene_type_col <span class="op">=</span> <span class="st">"gene_type"</span>,</span>
-<span>  weight_by_gene_count <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  cutoff_exp <span class="op">=</span> <span class="va">estimated_cutoffs</span>,</span>
-<span>  prior_count <span class="op">=</span> <span class="fl">2</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_for_ternary</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                 Basal          LP          ML</span></span>
-<span><span class="co">#&gt; 10_6_5_11 0.001360544 0.091121495 0.003780718</span></span>
-<span><span class="co">#&gt; 9_6_5_11  0.001360544 0.004672897 0.018903592</span></span>
-<span><span class="co">#&gt; purep53   0.100000000 0.025700935 0.009451796</span></span>
-<span><span class="co">#&gt; JMS8-2    0.031292517 0.004672897 0.003780718</span></span>
-<span><span class="co">#&gt; JMS8-3    0.001360544 0.011682243 0.003780718</span></span>
-<span><span class="co">#&gt; JMS8-4    0.001360544 0.063084112 0.003780718</span></span></code></pre></div>
-<p>Drawing the ternary plot</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/vcdTernaryPlot_functions.html">vcdTernaryPlot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_for_ternary</span>,</span>
-<span>  order_colnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>,</span>
-<span>  group <span class="op">=</span> <span class="va">example_dge_data</span><span class="op">$</span><span class="va">samples</span><span class="op">$</span><span class="va">group</span>,</span>
-<span>  group_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>,<span class="st">"green"</span>,<span class="st">"blue"</span><span class="op">)</span>,</span>
-<span>  point_size <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  show_legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  legend_point_size <span class="op">=</span> <span class="fl">0.6</span>,</span>
-<span>  legend_position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>,<span class="fl">0.5</span><span class="op">)</span>,</span>
-<span>  scale_legend <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-TernaryPlotOptimizedCutoff-1.png" width="100%"></p>
-</div>
 </div>
 </div>
   </div>
@@ -229,7 +107,12 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://app.codecov.io/gh/jinming-cheng/scTernary?branch=main" class="external-link"><img src="https://codecov.io/gh/jinming-cheng/scTernary/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
+</ul>
+</div>
 
   </div>
 </div>
