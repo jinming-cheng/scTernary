@@ -3,7 +3,7 @@
 \docType{data}
 \name{example_dge_data}
 \alias{example_dge_data}
-\title{An example dataset used in the example codes.}
+\title{An example dataset used in the example codes}
 \format{
 A DGElist object with raw count matrix, sample annotation data.frame and gene annotation data.frame:
 \describe{

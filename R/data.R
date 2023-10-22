@@ -1,4 +1,4 @@
-#' Annotation of signature genes of different cell types of mouse mammary gland.
+#' Annotation of signature genes of different cell types of mouse mammary gland
 #'
 #' A dataset containing 1470 Basal genes, 428 LP genes and 528 ML genes
 #'
@@ -13,7 +13,15 @@
 "anno_signature_genes_mouse"
 
 
-#' An example dataset used in the example codes.
+#' An example single cell RNA-Seq dataset
+#'
+#' A Seurat object containing 13750 genes and 80 cells (20 Basal, 20 LP, 20 ML and 20 Luminal-int cells). This example dataset is a subset of an adult mammary gland single cell RNA-Seq sample from Pal et al. 2017. Nature communications.
+#'
+#' @source \url{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM2510617}
+"example_seu"
+
+
+#' An example dataset used in the example codes
 #'
 #' A DGElist object containing 3 Basal, 3 LP and 3 ML bulk RNA-seq samples
 #'

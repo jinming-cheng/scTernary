@@ -1,0 +1,192 @@
+---
+title: "Analysis of single cell RNA-Seq data using scTernary"
+author:
+  - name: Jinming Cheng, Yunshun Chen and Gordon K. Smyth
+    affiliation: 
+      Walter and Eliza Hall Institute of Medical Research, 1G Royal Parade, Parkville, VIC 3052, Melbourne, Australia
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Analysis of single cell RNA-Seq data using scTernary}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  out.width = "100%"
+)
+```
+
+# Introduction
+
+
+# Installation
+
+The *scTernary* package can be installed from GitHub by using:
+
+``` r
+devtools::install_github("jinming-cheng/scTernary")
+```
+
+## Ternary plot analysis for 10x single cell RNA-Seq data
+
+Load package
+```{r loadPackage}
+library(scTernary)
+```
+
+Obtain raw count matrix
+```{r}
+data_exp_mat <- example_seu@assays$RNA@counts
+data_exp_mat <- as.matrix(data_exp_mat)
+dim(data_exp_mat)
+```
+
+Prepare data for ternary plot. A constant raw count cut-off of 0 is used to count the number of genes for each signature gene type.
+```{r}
+data_for_ternary = generate_data_for_ternary(
+  data_exp_mat = data_exp_mat,
+  anno_signature_genes = anno_signature_genes_mouse,
+  gene_name_col = "Symbol",
+  gene_type_col = "gene_type",
+  weight_by_gene_count = TRUE,
+  cutoff_exp = 0,
+  prior_count = 1
+)
+```
+
+```{r}
+head(data_for_ternary)
+```
+
+Add metadata to the data for ternary plot
+```{r}
+data_for_ternary <- cbind(data_for_ternary,example_seu@meta.data)
+```
+
+Draw the ternary plot colored by cell type
+```{r}
+scTernary::vcdTernaryPlot(data_for_ternary,
+                          order_colnames=c(2,3,1),
+                          point_size = 0.5,
+                          group = data_for_ternary$cell_type_label,
+                          show_legend = TRUE,
+                          scale_legend = 0.8,
+                          legend_position = c(0.3,0.5),
+                          legend_vertical_space = 1,
+                          legend_text_size = 1)
+
+```
+
+
+## Ternary plot analysis for Fluidigm C1 data or bulk RNA-Seq data
+
+### Ternary plot analysis using a constant cut-off
+
+The number of genes and library size of Fluidigm C1 single cell RNA-Seq data is quite similar to bulk RNA-Seq data. Hence, we use a small bulk RNA-Seq dataset to show the ternary plot analysis for Fluidigm C1 data.
+
+Example bulk RNA-seq data (using CPM)
+```{r}
+cpm = edgeR::cpm(example_dge_data$counts)
+```
+
+Three samples for each group
+```{r}
+example_dge_data$samples$group
+```
+
+Generate data for ternary plot usng a CPM cut-off of 100
+```{r}
+data_for_ternary = generate_data_for_ternary(
+  data_exp_mat = cpm,
+  anno_signature_genes = anno_signature_genes_mouse,
+  gene_name_col = "GeneID",
+  gene_type_col = "gene_type",
+  weight_by_gene_count = TRUE,
+  cutoff_exp = 100,
+  prior_count = 2
+)
+```
+
+
+```{r}
+head(data_for_ternary)
+```
+
+
+Drawing the ternary plot
+```{r TernaryPlotConstandCutoff}
+vcdTernaryPlot(data = data_for_ternary,
+  order_colnames = c(2,3,1),
+  group = example_dge_data$samples$group,
+  group_color = c("red","green","blue"),
+  point_size = 1,
+  show_legend = TRUE,
+  legend_point_size = 0.6,
+  legend_position = c(0.3,0.5),
+  scale_legend = 1)
+```
+
+
+### Ternary plot analysis using estimated cut-offs
+
+We can also find the optimized cut-off for each sample (or cell) to calculate the signature gene proportion for the sample (or cell). The optimized cut-off is estimated by maximizing the coefficient of variation (CV) of the signature gene proportion by a grid search method.
+
+Example bulk RNA-seq data (using logCPM)
+```{r}
+lcpm = edgeR::cpm(example_dge_data$counts,log = TRUE)
+```
+
+Three samples for each group
+```{r}
+example_dge_data$samples$group
+```
+
+Estimate a optimized cut-off for each sample (or cell)
+```{r}
+estimated_cutoffs = estimate_optimized_cutoffs(
+  data_exp_mat = lcpm,
+  anno_signature_genes = anno_signature_genes_mouse,
+  gene_name_col = "GeneID",
+  gene_type_col = "gene_type",
+  weight_by_gene_count = TRUE,
+  prior_count = 2,
+  do_parallel = TRUE,
+  n_cores = 2
+)
+```
+
+Generate data for ternary plot
+```{r}
+data_for_ternary = generate_data_for_ternary(
+  data_exp_mat = lcpm,
+  anno_signature_genes = anno_signature_genes_mouse,
+  gene_name_col = "GeneID",
+  gene_type_col = "gene_type",
+  weight_by_gene_count = TRUE,
+  cutoff_exp = estimated_cutoffs,
+  prior_count = 2
+)
+```
+
+
+```{r}
+head(data_for_ternary)
+```
+
+
+Drawing the ternary plot
+```{r TernaryPlotOptimizedCutoff}
+vcdTernaryPlot(data = data_for_ternary,
+  order_colnames = c(2,3,1),
+  group = example_dge_data$samples$group,
+  group_color = c("red","green","blue"),
+  point_size = 1,
+  show_legend = TRUE,
+  legend_point_size = 0.6,
+  legend_position = c(0.3,0.5),
+  scale_legend = 1)
+```
+

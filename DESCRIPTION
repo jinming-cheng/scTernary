@@ -18,4 +18,10 @@ Imports:
     gridExtra,
     vcd
 Suggests: 
-    edgeR
+    covr,
+    edgeR,
+    knitr,
+    rmarkdown,
+    Seurat,
+    SeuratObject
+VignetteBuilder: knitr

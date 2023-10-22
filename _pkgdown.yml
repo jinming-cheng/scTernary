@@ -23,7 +23,7 @@ reference:
   - example_dge_data
 - title: "Data preparing"
   desc: >
-    Funtions for generating data for ternary plot from 10x scRNA-seq data, Fluidigm C1 scRNA-seq data or bulk RNA-seq data
+    Funtions for generating data for ternary plot from 10x scRNA-Seq data, Fluidigm C1 scRNA-Seq data or bulk RNA-Seq data
   contents:
   - generate_data_for_ternary
   - calculate_cv_by_row

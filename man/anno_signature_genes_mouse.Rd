@@ -3,7 +3,7 @@
 \docType{data}
 \name{anno_signature_genes_mouse}
 \alias{anno_signature_genes_mouse}
-\title{Annotation of signature genes of different cell types of mouse mammary gland.}
+\title{Annotation of signature genes of different cell types of mouse mammary gland}
 \format{
 A data frame with 2427 rows and 4 columns:
 \describe{
