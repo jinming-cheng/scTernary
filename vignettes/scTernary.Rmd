@@ -3,7 +3,8 @@ title: "Analysis of single cell RNA-Seq data using scTernary"
 author:
   - name: Jinming Cheng, Yunshun Chen and Gordon K. Smyth
     affiliation: 
-      Walter and Eliza Hall Institute of Medical Research, 1G Royal Parade, Parkville, VIC 3052, Melbourne, Australia
+      Walter and Eliza Hall Institute of Medical Research, Melbourne, Australia
+date: "`r Sys.Date()`"      
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Analysis of single cell RNA-Seq data using scTernary}
@@ -20,7 +21,7 @@ knitr::opts_chunk$set(
 ```
 
 # Introduction
-
+Ternary plot is a good method to visualize three-dimensional data. scTernary is an easy and user friendly package to show three different single cell populations as well as the potential intermediate cell populations on the ternary plot. 
 
 # Installation
 
@@ -30,14 +31,14 @@ The *scTernary* package can be installed from GitHub by using:
 devtools::install_github("jinming-cheng/scTernary")
 ```
 
-## Ternary plot analysis for 10x single cell RNA-Seq data
+# Ternary plot analysis for 10x single cell RNA-Seq data
 
 Load package
 ```{r loadPackage}
 library(scTernary)
 ```
 
-Obtain raw count matrix
+Obtain raw count matrix from an example `Seurat` object containing cells from adult mouse mammary gland epithelium.
 ```{r}
 data_exp_mat <- example_seu@assays$RNA@counts
 data_exp_mat <- as.matrix(data_exp_mat)
@@ -66,7 +67,7 @@ Add metadata to the data for ternary plot
 data_for_ternary <- cbind(data_for_ternary,example_seu@meta.data)
 ```
 
-Draw the ternary plot colored by cell type
+Draw the ternary plot colored by cell type. Mouse mammary gland epithelium contains three major cell types: Basal, LP and ML. In this example, an additional luminal intermediate cell population can be easily observed by using the ternary plot method.
 ```{r}
 scTernary::vcdTernaryPlot(data_for_ternary,
                           order_colnames=c(2,3,1),
@@ -81,9 +82,9 @@ scTernary::vcdTernaryPlot(data_for_ternary,
 ```
 
 
-## Ternary plot analysis for Fluidigm C1 data or bulk RNA-Seq data
+# Ternary plot analysis for Fluidigm C1 data or bulk RNA-Seq data
 
-### Ternary plot analysis using a constant cut-off
+## Ternary plot analysis using a constant cut-off
 
 The number of genes and library size of Fluidigm C1 single cell RNA-Seq data is quite similar to bulk RNA-Seq data. Hence, we use a small bulk RNA-Seq dataset to show the ternary plot analysis for Fluidigm C1 data.
 
@@ -130,7 +131,7 @@ vcdTernaryPlot(data = data_for_ternary,
 ```
 
 
-### Ternary plot analysis using estimated cut-offs
+## Ternary plot analysis using estimated cut-offs
 
 We can also find the optimized cut-off for each sample (or cell) to calculate the signature gene proportion for the sample (or cell). The optimized cut-off is estimated by maximizing the coefficient of variation (CV) of the signature gene proportion by a grid search method.
 

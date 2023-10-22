@@ -21,6 +21,7 @@ reference:
   contents:
   - anno_signature_genes_mouse
   - example_dge_data
+  - example_seu
 - title: "Data preparing"
   desc: >
     Funtions for generating data for ternary plot from 10x scRNA-Seq data, Fluidigm C1 scRNA-Seq data or bulk RNA-Seq data
