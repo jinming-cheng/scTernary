@@ -72,7 +72,7 @@ scTernary</h1>
 Yunshun Chen and Gordon K. Smyth</h4>
             <address class="author_afil">
       Walter and Eliza Hall Institute of Medical Research, Melbourne,
-Australia<br><h4 data-toc-skip class="date">2023-10-22</h4>
+Australia<br><h4 data-toc-skip class="date">2023-10-29</h4>
       
       
       <div class="hidden name"><code>scTernary.Rmd</code></div>
@@ -112,10 +112,26 @@ containing cells from adult mouse mammary gland epithelium.</p>
 <span><span class="co">#&gt; Loading required package: Matrix</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">data_exp_mat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 13750    80</span></span></code></pre></div>
+<p>Mouse signature genes for Basal, LP and ML cells</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">anno_signature_genes_mouse</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        GeneID        Symbol Chr gene_type</span></span>
+<span><span class="co">#&gt; 497097 497097          Xkr4   1     Basal</span></span>
+<span><span class="co">#&gt; 329093 329093          Cpa6   1     Basal</span></span>
+<span><span class="co">#&gt; 320492 320492 A830018L16Rik   1     Basal</span></span>
+<span><span class="co">#&gt; 240725 240725         Sulf1   1     Basal</span></span>
+<span><span class="co">#&gt; 14048   14048          Eya1   1     Basal</span></span>
+<span><span class="co">#&gt; 226866 226866        Sbspon   1     Basal</span></span></code></pre></div>
+<p>Number of signature genes for each cell type</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">anno_signature_genes_mouse</span><span class="op">$</span><span class="va">gene_type</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Basal    LP    ML </span></span>
+<span><span class="co">#&gt;  1470   428   529</span></span></code></pre></div>
 <p>Prepare data for ternary plot. A constant raw count cut-off of 0 is
 used to count the number of genes for each signature gene type.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data_for_ternary</span> <span class="op">=</span> <span class="fu"><a href="../reference/generate_data_for_ternary.html">generate_data_for_ternary</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_for_ternary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_data_for_ternary.html">generate_data_for_ternary</a></span><span class="op">(</span></span>
 <span>  data_exp_mat <span class="op">=</span> <span class="va">data_exp_mat</span>,</span>
 <span>  anno_signature_genes <span class="op">=</span> <span class="va">anno_signature_genes_mouse</span>,</span>
 <span>  gene_name_col <span class="op">=</span> <span class="st">"Symbol"</span>,</span>
@@ -124,7 +140,7 @@ used to count the number of genes for each signature gene type.</p>
 <span>  cutoff_exp <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  prior_count <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_for_ternary</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                             Basal         LP         ML</span></span>
 <span><span class="co">#&gt; Adult-CGGAGGCTGTCTGA-1 0.06108202 0.03217158 0.01113586</span></span>
@@ -134,13 +150,13 @@ used to count the number of genes for each signature gene type.</p>
 <span><span class="co">#&gt; Adult-AAGACAGATTGGTG-1 0.06806283 0.02949062 0.01336303</span></span>
 <span><span class="co">#&gt; Adult-TTGAGGACGTTTGG-1 0.06806283 0.08579088 0.01559020</span></span></code></pre></div>
 <p>Add metadata to the data for ternary plot</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_for_ternary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">data_for_ternary</span>,<span class="va">example_seu</span><span class="op">@</span><span class="va">meta.data</span><span class="op">)</span></span></code></pre></div>
 <p>Draw the ternary plot colored by cell type. Mouse mammary gland
 epithelium contains three major cell types: Basal, LP and ML. In this
 example, an additional luminal intermediate cell population can be
 easily observed by using the ternary plot method.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">scTernary</span><span class="fu">::</span><span class="fu"><a href="../reference/vcdTernaryPlot_functions.html">vcdTernaryPlot</a></span><span class="op">(</span><span class="va">data_for_ternary</span>,</span>
 <span>                          order_colnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>,</span>
 <span>                          point_size <span class="op">=</span> <span class="fl">0.5</span>,</span>
@@ -150,7 +166,7 @@ easily observed by using the ternary plot method.</p>
 <span>                          legend_position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>,<span class="fl">0.5</span><span class="op">)</span>,</span>
 <span>                          legend_vertical_space <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>                          legend_text_size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="scTernary_files/figure-html/unnamed-chunk-6-1.png" width="100%"></p>
+<p><img src="scTernary_files/figure-html/unnamed-chunk-8-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="ternary-plot-analysis-for-fluidigm-c1-data-or-bulk-rna-seq-data">Ternary plot analysis for Fluidigm C1 data or bulk RNA-Seq data<a class="anchor" aria-label="anchor" href="#ternary-plot-analysis-for-fluidigm-c1-data-or-bulk-rna-seq-data"></a>
@@ -163,16 +179,16 @@ RNA-Seq data is quite similar to bulk RNA-Seq data. Hence, we use a
 small bulk RNA-Seq dataset to show the ternary plot analysis for
 Fluidigm C1 data.</p>
 <p>Example bulk RNA-seq data (using CPM)</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cpm</span> <span class="op">=</span> <span class="fu">edgeR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/edgeR/man/cpm.html" class="external-link">cpm</a></span><span class="op">(</span><span class="va">example_dge_data</span><span class="op">$</span><span class="va">counts</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cpm</span> <span class="op">&lt;-</span> <span class="fu">edgeR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/edgeR/man/cpm.html" class="external-link">cpm</a></span><span class="op">(</span><span class="va">example_dge_data</span><span class="op">$</span><span class="va">counts</span><span class="op">)</span></span></code></pre></div>
 <p>Three samples for each group</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">example_dge_data</span><span class="op">$</span><span class="va">samples</span><span class="op">$</span><span class="va">group</span></span>
 <span><span class="co">#&gt; [1] LP    ML    Basal Basal ML    LP    Basal ML    LP   </span></span>
 <span><span class="co">#&gt; Levels: Basal LP ML</span></span></code></pre></div>
-<p>Generate data for ternary plot usng a CPM cut-off of 100</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data_for_ternary</span> <span class="op">=</span> <span class="fu"><a href="../reference/generate_data_for_ternary.html">generate_data_for_ternary</a></span><span class="op">(</span></span>
+<p>Generate data for ternary plot using a CPM cut-off of 100</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_for_ternary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_data_for_ternary.html">generate_data_for_ternary</a></span><span class="op">(</span></span>
 <span>  data_exp_mat <span class="op">=</span> <span class="va">cpm</span>,</span>
 <span>  anno_signature_genes <span class="op">=</span> <span class="va">anno_signature_genes_mouse</span>,</span>
 <span>  gene_name_col <span class="op">=</span> <span class="st">"GeneID"</span>,</span>
@@ -181,7 +197,7 @@ Fluidigm C1 data.</p>
 <span>  cutoff_exp <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  prior_count <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_for_ternary</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                Basal         LP         ML</span></span>
 <span><span class="co">#&gt; 10_6_5_11 0.02244898 0.34579439 0.07750473</span></span>
@@ -191,7 +207,7 @@ Fluidigm C1 data.</p>
 <span><span class="co">#&gt; JMS8-3    0.02380952 0.21495327 0.26654064</span></span>
 <span><span class="co">#&gt; JMS8-4    0.02040816 0.33878505 0.09451796</span></span></code></pre></div>
 <p>Drawing the ternary plot</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/vcdTernaryPlot_functions.html">vcdTernaryPlot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_for_ternary</span>,</span>
 <span>  order_colnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>,</span>
 <span>  group <span class="op">=</span> <span class="va">example_dge_data</span><span class="op">$</span><span class="va">samples</span><span class="op">$</span><span class="va">group</span>,</span>
@@ -212,16 +228,16 @@ optimized cut-off is estimated by maximizing the coefficient of
 variation (CV) of the signature gene proportion by a grid search
 method.</p>
 <p>Example bulk RNA-seq data (using logCPM)</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">lcpm</span> <span class="op">=</span> <span class="fu">edgeR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/edgeR/man/cpm.html" class="external-link">cpm</a></span><span class="op">(</span><span class="va">example_dge_data</span><span class="op">$</span><span class="va">counts</span>,log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">lcpm</span> <span class="op">&lt;-</span> <span class="fu">edgeR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/edgeR/man/cpm.html" class="external-link">cpm</a></span><span class="op">(</span><span class="va">example_dge_data</span><span class="op">$</span><span class="va">counts</span>,log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Three samples for each group</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">example_dge_data</span><span class="op">$</span><span class="va">samples</span><span class="op">$</span><span class="va">group</span></span>
 <span><span class="co">#&gt; [1] LP    ML    Basal Basal ML    LP    Basal ML    LP   </span></span>
 <span><span class="co">#&gt; Levels: Basal LP ML</span></span></code></pre></div>
 <p>Estimate a optimized cut-off for each sample (or cell)</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">estimated_cutoffs</span> <span class="op">=</span> <span class="fu"><a href="../reference/estimate_optimized_cutoffs.html">estimate_optimized_cutoffs</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">estimated_cutoffs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/estimate_optimized_cutoffs.html">estimate_optimized_cutoffs</a></span><span class="op">(</span></span>
 <span>  data_exp_mat <span class="op">=</span> <span class="va">lcpm</span>,</span>
 <span>  anno_signature_genes <span class="op">=</span> <span class="va">anno_signature_genes_mouse</span>,</span>
 <span>  gene_name_col <span class="op">=</span> <span class="st">"GeneID"</span>,</span>
@@ -232,8 +248,8 @@ method.</p>
 <span>  n_cores <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Generate data for ternary plot</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data_for_ternary</span> <span class="op">=</span> <span class="fu"><a href="../reference/generate_data_for_ternary.html">generate_data_for_ternary</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_for_ternary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_data_for_ternary.html">generate_data_for_ternary</a></span><span class="op">(</span></span>
 <span>  data_exp_mat <span class="op">=</span> <span class="va">lcpm</span>,</span>
 <span>  anno_signature_genes <span class="op">=</span> <span class="va">anno_signature_genes_mouse</span>,</span>
 <span>  gene_name_col <span class="op">=</span> <span class="st">"GeneID"</span>,</span>
@@ -242,7 +258,7 @@ method.</p>
 <span>  cutoff_exp <span class="op">=</span> <span class="va">estimated_cutoffs</span>,</span>
 <span>  prior_count <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_for_ternary</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                 Basal          LP          ML</span></span>
 <span><span class="co">#&gt; 10_6_5_11 0.001360544 0.091121495 0.003780718</span></span>
@@ -252,7 +268,7 @@ method.</p>
 <span><span class="co">#&gt; JMS8-3    0.001360544 0.011682243 0.003780718</span></span>
 <span><span class="co">#&gt; JMS8-4    0.001360544 0.063084112 0.003780718</span></span></code></pre></div>
 <p>Drawing the ternary plot</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/vcdTernaryPlot_functions.html">vcdTernaryPlot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_for_ternary</span>,</span>
 <span>  order_colnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>,</span>
 <span>  group <span class="op">=</span> <span class="va">example_dge_data</span><span class="op">$</span><span class="va">samples</span><span class="op">$</span><span class="va">group</span>,</span>
