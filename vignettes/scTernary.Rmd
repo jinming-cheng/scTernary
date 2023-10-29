@@ -45,6 +45,16 @@ data_exp_mat <- as.matrix(data_exp_mat)
 dim(data_exp_mat)
 ```
 
+Mouse signature genes for Basal, LP and ML cells
+```{r}
+head(anno_signature_genes_mouse)
+```
+
+Number of signature genes for each cell type
+```{r}
+table(anno_signature_genes_mouse$gene_type)
+```
+
 Prepare data for ternary plot. A constant raw count cut-off of 0 is used to count the number of genes for each signature gene type.
 ```{r}
 data_for_ternary <- generate_data_for_ternary(
