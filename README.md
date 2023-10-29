@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Codecov test
-coverage](https://codecov.io/gh/jinming-cheng/scTernary/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jinming-cheng/scTernary?branch=main)
+coverage](https://codecov.io/gh/jinming-cheng/scTernary/graph/badge.svg)](https://app.codecov.io/gh/jinming-cheng/scTernary?branch=main)
 <!-- badges: end -->
 
 The goal of scTernary is to perform ternary plot analysis for single
