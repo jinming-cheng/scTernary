@@ -118,9 +118,9 @@ half of the total cores will be used if not provided</p></dd>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Set 'weight_by_gene_count' to TRUE is recommended for estimating the optimized cut-offs</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">start_time</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/proc.time.html" class="external-link">proc.time</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">start_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/proc.time.html" class="external-link">proc.time</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">estimated_cutoffs</span> <span class="op">=</span> <span class="fu">estimate_optimized_cutoffs</span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">estimated_cutoffs</span> <span class="op">&lt;-</span> <span class="fu">estimate_optimized_cutoffs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  data_exp_mat <span class="op">=</span> <span class="fu">edgeR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/edgeR/man/cpm.html" class="external-link">cpm</a></span><span class="op">(</span><span class="va">example_dge_data</span><span class="op">$</span><span class="va">counts</span>,</span></span>
 <span class="r-in"><span>                            log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  anno_signature_genes <span class="op">=</span> <span class="va">anno_signature_genes_mouse</span>,</span></span>
@@ -132,11 +132,11 @@ half of the total cores will be used if not provided</p></dd>
 <span class="r-in"><span>  n_cores <span class="op">=</span> <span class="fl">2</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">end_time</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/proc.time.html" class="external-link">proc.time</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="va">start_time</span></span></span>
+<span class="r-in"><span><span class="va">end_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/proc.time.html" class="external-link">proc.time</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="va">start_time</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">end_time</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   6.202 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   5.253 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">estimated_cutoffs</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10_6_5_11  9_6_5_11   purep53    JMS8-2    JMS8-3    JMS8-4    JMS8-5  JMS9-P7c </span>
@@ -144,7 +144,7 @@ half of the total cores will be used if not provided</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  JMS9-P8c </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10.675676 </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">data_for_ternary</span> <span class="op">=</span> <span class="fu"><a href="generate_data_for_ternary.html">generate_data_for_ternary</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">data_for_ternary</span> <span class="op">&lt;-</span> <span class="fu"><a href="generate_data_for_ternary.html">generate_data_for_ternary</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  data_exp_mat <span class="op">=</span> <span class="fu">edgeR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/edgeR/man/cpm.html" class="external-link">cpm</a></span><span class="op">(</span><span class="va">example_dge_data</span><span class="op">$</span><span class="va">counts</span>,</span></span>
 <span class="r-in"><span>                            log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  anno_signature_genes <span class="op">=</span> <span class="va">anno_signature_genes_mouse</span>,</span></span>

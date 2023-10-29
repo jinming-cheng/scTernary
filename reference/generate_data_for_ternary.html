@@ -110,7 +110,7 @@ default is 2 but can be set to a different one</p></dd>
 <span class="r-in"><span><span class="co"># Generate data for ternary plots</span></span></span>
 <span class="r-in"><span><span class="co"># using a CPM matrix and a CPM cut-off of 100</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">data_for_ternary</span> <span class="op">=</span> <span class="fu">generate_data_for_ternary</span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">data_for_ternary</span> <span class="op">&lt;-</span> <span class="fu">generate_data_for_ternary</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  data_exp_mat <span class="op">=</span> <span class="fu">edgeR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/edgeR/man/cpm.html" class="external-link">cpm</a></span><span class="op">(</span><span class="va">example_dge_data</span><span class="op">$</span><span class="va">counts</span>,</span></span>
 <span class="r-in"><span>                            log <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  anno_signature_genes <span class="op">=</span> <span class="va">anno_signature_genes_mouse</span>,</span></span>
