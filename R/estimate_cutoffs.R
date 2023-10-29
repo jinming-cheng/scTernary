@@ -24,16 +24,16 @@
 #' )
 #'
 #'
-calculate_cv_by_row = function(cutoff_exp,...){
+calculate_cv_by_row <- function(cutoff_exp,...){
 
-  data_for_ternary = generate_data_for_ternary(cutoff_exp = cutoff_exp,
-                                               ...)
+  data_for_ternary <- generate_data_for_ternary(cutoff_exp = cutoff_exp,
+                                                ...)
 
   # Coefficient of variation, if mean is 0, set CV to 0
-  f_cv = function(x){ ifelse(mean(x)==0,0,stats::sd(x)/mean(x) ) }
+  f_cv <- function(x){ ifelse(mean(x)==0,0,stats::sd(x)/mean(x) ) }
 
   # Coefficient of variation
-  cv_by_row = apply(data_for_ternary, 1, f_cv)
+  cv_by_row <- apply(data_for_ternary, 1, f_cv)
 
   cv_by_row
 }
@@ -55,9 +55,9 @@ calculate_cv_by_row = function(cutoff_exp,...){
 #' @examples
 #' # Set 'weight_by_gene_count' to TRUE is recommended for estimating the optimized cut-offs
 #'
-#' start_time = proc.time()
+#' start_time <- proc.time()
 #'
-#' estimated_cutoffs = estimate_optimized_cutoffs(
+#' estimated_cutoffs <- estimate_optimized_cutoffs(
 #'   data_exp_mat = edgeR::cpm(example_dge_data$counts,
 #'                             log = TRUE),
 #'   anno_signature_genes = anno_signature_genes_mouse,
@@ -69,13 +69,13 @@ calculate_cv_by_row = function(cutoff_exp,...){
 #'   n_cores = 2
 #' )
 #'
-#' end_time = proc.time() - start_time
+#' end_time <- proc.time() - start_time
 #'
 #' end_time[3]
 #'
 #' estimated_cutoffs
 #'
-#' data_for_ternary = generate_data_for_ternary(
+#' data_for_ternary <- generate_data_for_ternary(
 #'   data_exp_mat = edgeR::cpm(example_dge_data$counts,
 #'                             log = TRUE),
 #'   anno_signature_genes = anno_signature_genes_mouse,
@@ -96,59 +96,59 @@ calculate_cv_by_row = function(cutoff_exp,...){
 #'   scale_legend = 1)
 #'
 #'
-estimate_optimized_cutoffs = function(data_exp_mat = NULL,
-                                      interval = seq(from = floor(min(data_exp_mat)),
-                                                     to = ceiling(max(data_exp_mat)),
-                                                     length.out = 1000),
-                                      gene_name_col = "GeneID",
-                                      gene_type_col = "gene_type",
-                                      anno_signature_genes = NULL,
-                                      weight_by_gene_count = TRUE,
-                                      prior_count = 2,
-                                      do_parallel = TRUE,
-                                      n_cores = NULL){
+estimate_optimized_cutoffs <- function(data_exp_mat = NULL,
+                                       interval = seq(from = floor(min(data_exp_mat)),
+                                                      to = ceiling(max(data_exp_mat)),
+                                                      length.out = 1000),
+                                       gene_name_col = "GeneID",
+                                       gene_type_col = "gene_type",
+                                       anno_signature_genes = NULL,
+                                       weight_by_gene_count = TRUE,
+                                       prior_count = 2,
+                                       do_parallel = TRUE,
+                                       n_cores = NULL){
 
-  data_exp_mat = as.data.frame(data_exp_mat)
+  data_exp_mat <- as.data.frame(data_exp_mat)
 
   if(do_parallel == TRUE){
 
     # do parallel
     if( is.null(n_cores) || !(is.numeric(n_cores)) ){
-      n_cores = parallel::detectCores(logical = TRUE)/2
+      n_cores <- parallel::detectCores(logical = TRUE)/2
     }
 
-    cl = parallel::makeCluster(n_cores)
+    cl <- parallel::makeCluster(n_cores)
 
     parallel::clusterExport(cl, deparse(substitute(calculate_cv_by_row)))
 
-    res = parallel::parSapply(cl,
-                              interval,
-                              FUN = calculate_cv_by_row,
-                              data_exp_mat =  data_exp_mat,
-                              gene_name_col = gene_name_col,
-                              gene_type_col = gene_type_col,
-                              anno_signature_genes = anno_signature_genes,
-                              weight_by_gene_count = weight_by_gene_count,
-                              prior_count = prior_count)
+    res <- parallel::parSapply(cl,
+                               interval,
+                               FUN = calculate_cv_by_row,
+                               data_exp_mat =  data_exp_mat,
+                               gene_name_col = gene_name_col,
+                               gene_type_col = gene_type_col,
+                               anno_signature_genes = anno_signature_genes,
+                               weight_by_gene_count = weight_by_gene_count,
+                               prior_count = prior_count)
     parallel::stopCluster(cl)
 
   }else{
     # not do parallel
-    res = sapply(interval,
-                 FUN = calculate_cv_by_row,
-                 data_exp_mat =  data_exp_mat,
-                 gene_name_col = gene_name_col,
-                 gene_type_col = gene_type_col,
-                 anno_signature_genes = anno_signature_genes,
-                 weight_by_gene_count = weight_by_gene_count,
-                 prior_count = prior_count)
+    res <- sapply(interval,
+                  FUN = calculate_cv_by_row,
+                  data_exp_mat =  data_exp_mat,
+                  gene_name_col = gene_name_col,
+                  gene_type_col = gene_type_col,
+                  anno_signature_genes = anno_signature_genes,
+                  weight_by_gene_count = weight_by_gene_count,
+                  prior_count = prior_count)
 
   }
 
   # if only one cell,  transpose res (row is cell, columns are cutoffs)
-  if(ncol(data_exp_mat)==1){res = t(res);rownames(res) = colnames(data_exp_mat)}
+  if(ncol(data_exp_mat)==1){res <- t(res);rownames(res) <- colnames(data_exp_mat)}
 
   # return the cut-off with maximum CV
-  res = apply(res, 1, function(x){n = which.max(x); interval[n]} )
+  res <- apply(res, 1, function(x){n <- which.max(x); interval[n]} )
   res
 }

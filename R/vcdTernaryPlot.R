@@ -29,7 +29,7 @@
 #' @export
 #'
 #' @examples
-#' data_for_ternary = data.frame(Basal = c(1,2,2,0,0,1,0,1,0),
+#' data_for_ternary <- data.frame(Basal = c(1,2,2,0,0,1,0,1,0),
 #'                               ML    = c(0,1,0,1,2,2,0,0,1),
 #'                               LP    = c(0,0,1,0,1,0,1,2,2) )
 #'
@@ -40,61 +40,61 @@
 #'                point_size = 1,
 #'                legend_point_size = 0.6)
 
-vcdTernaryPlot = function(data = NULL,
-                          order_colnames = c(3,2,1),
-                          group = NULL,
-                          group_levels = levels(factor(group)),
-                          group_color = NULL,
-                          label_position_x = c(0.1,0.9,0.5),
-                          label_position_y = c(0.05,0.05,0.85),
-                          show_legend = FALSE,
-                          legend_position = c(0.1,0.5),
-                          prop_size = FALSE,
-                          point_shape = 16,
-                          point_size = 0.5,
-                          label_text_size = 1.2,
-                          legend_point_shape = 16,
-                          legend_point_size  = 0.5,
-                          legend_text_size = 1.5,
-                          legend_vertical_space = 1.5,
-                          scale_legend = 0.5,
-                          n_col = NULL,
-                          facet=FALSE,
-                          title = NULL){
+vcdTernaryPlot <- function(data = NULL,
+                           order_colnames = c(3,2,1),
+                           group = NULL,
+                           group_levels = levels(factor(group)),
+                           group_color = NULL,
+                           label_position_x = c(0.1,0.9,0.5),
+                           label_position_y = c(0.05,0.05,0.85),
+                           show_legend = FALSE,
+                           legend_position = c(0.1,0.5),
+                           prop_size = FALSE,
+                           point_shape = 16,
+                           point_size = 0.5,
+                           label_text_size = 1.2,
+                           legend_point_shape = 16,
+                           legend_point_size  = 0.5,
+                           legend_text_size = 1.5,
+                           legend_vertical_space = 1.5,
+                           scale_legend = 0.5,
+                           n_col = NULL,
+                           facet=FALSE,
+                           title = NULL){
 
   # if colors are not set, use the default colors
   if(is.null(group_color)){
-    group_color = c("#6495ED", "#BF3EFF", "#FF3030", "#FFD700", "#ADFF2F",
-                    "#00FA9A", "#48D1CC", "#FFA500", "#FFC0CB", "#CD1076",
-                    "#EE82EE", "#FF00FF", "#8B6914", "#00FFFF", "#E5E5E5")
+    group_color <- c("#6495ED", "#BF3EFF", "#FF3030", "#FFD700", "#ADFF2F",
+                     "#00FA9A", "#48D1CC", "#FFA500", "#FFC0CB", "#CD1076",
+                     "#EE82EE", "#FF00FF", "#8B6914", "#00FFFF", "#E5E5E5")
   }
 
-  group_color = group_color[1:length(group_levels)]
+  group_color <- group_color[1:length(group_levels)]
 
   # if group is null, not show legend
   if(is.null(group)){
-    show_legend = FALSE
-    facet = FALSE}
+    show_legend <- FALSE
+    facet <- FALSE}
 
   # set color for each group
   if(!is.null(group)){
-    my_color = factor(group,
-                      labels = group_color,
-                      levels = group_levels)
+    my_color <- factor(group,
+                       labels = group_color,
+                       levels = group_levels)
 
-    my_color = as.character(my_color)  # should not be factor
+    my_color <- as.character(my_color)  # should not be factor
 
   }else{
-    my_color = "red"
+    my_color <- "red"
   }
 
-  my_labels_axis = colnames(data)[order_colnames]
+  my_labels_axis <- colnames(data)[order_colnames]
 
-  grobs_list = list()
+  grobs_list <- list()
 
   if(facet==FALSE){
-    i = 1
-    grobs_list[[i]] = grid::grid.grabExpr(
+    i <- 1
+    grobs_list[[i]] <- grid::grid.grabExpr(
       {
         # draw ternary plot
         vcd::ternaryplot(data[,my_labels_axis],
@@ -125,7 +125,7 @@ vcdTernaryPlot = function(data = NULL,
 
   }else{
     for (i in 1:length(group_levels) ) {
-      grobs_list[[i]] = grid::grid.grabExpr(
+      grobs_list[[i]] <- grid::grid.grabExpr(
         {
           # draw ternary plot
           vcd::ternaryplot(data[group==group_levels[i],my_labels_axis],
@@ -160,23 +160,23 @@ vcdTernaryPlot = function(data = NULL,
 
   # add legend
   if( show_legend ){
-    grobs_list[[i+1]] = grid::grid.grabExpr(vcd::grid_legend(legend_position,
-                                                           pch = point_shape,
-                                                           size = legend_point_size,
-                                                           col = group_color,
-                                                           labels = group_levels,
-                                                           gp = grid::gpar(cex=legend_text_size),
-                                                           vgap = grid::unit(legend_vertical_space, "lines"),
-                                                           frame = FALSE,
-                                                           title = NULL)
-                                          ,warn = 0)
+    grobs_list[[i+1]] <- grid::grid.grabExpr(vcd::grid_legend(legend_position,
+                                                              pch = point_shape,
+                                                              size = legend_point_size,
+                                                              col = group_color,
+                                                              labels = group_levels,
+                                                              gp = grid::gpar(cex=legend_text_size),
+                                                              vgap = grid::unit(legend_vertical_space, "lines"),
+                                                              frame = FALSE,
+                                                              title = NULL)
+                                             ,warn = 0)
   }
 
 
-  my_layout_matrix = prepare_layout_matrix(grobs_list,
-                                           last_is_legend = show_legend,
-                                           n_col = n_col,
-                                           scale_legend   = scale_legend)
+  my_layout_matrix <- prepare_layout_matrix(grobs_list,
+                                            last_is_legend = show_legend,
+                                            n_col = n_col,
+                                            scale_legend   = scale_legend)
 
   gridExtra::grid.arrange( grobs = grobs_list,
                            ncol= my_layout_matrix[["ncol"]],
@@ -185,5 +185,5 @@ vcdTernaryPlot = function(data = NULL,
                            respect = TRUE,
                            layout_matrix = my_layout_matrix[["layout_matrix"]] )
 
-  }
+}
 

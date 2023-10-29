@@ -47,7 +47,7 @@ dim(data_exp_mat)
 
 Prepare data for ternary plot. A constant raw count cut-off of 0 is used to count the number of genes for each signature gene type.
 ```{r}
-data_for_ternary = generate_data_for_ternary(
+data_for_ternary <- generate_data_for_ternary(
   data_exp_mat = data_exp_mat,
   anno_signature_genes = anno_signature_genes_mouse,
   gene_name_col = "Symbol",
@@ -90,7 +90,7 @@ The number of genes and library size of Fluidigm C1 single cell RNA-Seq data is 
 
 Example bulk RNA-seq data (using CPM)
 ```{r}
-cpm = edgeR::cpm(example_dge_data$counts)
+cpm <- edgeR::cpm(example_dge_data$counts)
 ```
 
 Three samples for each group
@@ -98,9 +98,9 @@ Three samples for each group
 example_dge_data$samples$group
 ```
 
-Generate data for ternary plot usng a CPM cut-off of 100
+Generate data for ternary plot using a CPM cut-off of 100
 ```{r}
-data_for_ternary = generate_data_for_ternary(
+data_for_ternary <- generate_data_for_ternary(
   data_exp_mat = cpm,
   anno_signature_genes = anno_signature_genes_mouse,
   gene_name_col = "GeneID",
@@ -137,7 +137,7 @@ We can also find the optimized cut-off for each sample (or cell) to calculate th
 
 Example bulk RNA-seq data (using logCPM)
 ```{r}
-lcpm = edgeR::cpm(example_dge_data$counts,log = TRUE)
+lcpm <- edgeR::cpm(example_dge_data$counts,log = TRUE)
 ```
 
 Three samples for each group
@@ -147,7 +147,7 @@ example_dge_data$samples$group
 
 Estimate a optimized cut-off for each sample (or cell)
 ```{r}
-estimated_cutoffs = estimate_optimized_cutoffs(
+estimated_cutoffs <- estimate_optimized_cutoffs(
   data_exp_mat = lcpm,
   anno_signature_genes = anno_signature_genes_mouse,
   gene_name_col = "GeneID",
@@ -161,7 +161,7 @@ estimated_cutoffs = estimate_optimized_cutoffs(
 
 Generate data for ternary plot
 ```{r}
-data_for_ternary = generate_data_for_ternary(
+data_for_ternary <- generate_data_for_ternary(
   data_exp_mat = lcpm,
   anno_signature_genes = anno_signature_genes_mouse,
   gene_name_col = "GeneID",
