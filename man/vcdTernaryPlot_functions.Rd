@@ -77,7 +77,7 @@ vcdTernaryPlot() is modified from vcd::ternaryplot()
 and can be used to draw a ternary plot.
 }
 \examples{
-data_for_ternary = data.frame(Basal = c(1,2,2,0,0,1,0,1,0),
+data_for_ternary <- data.frame(Basal = c(1,2,2,0,0,1,0,1,0),
                               ML    = c(0,1,0,1,2,2,0,0,1),
                               LP    = c(0,0,1,0,1,0,1,2,2) )
 

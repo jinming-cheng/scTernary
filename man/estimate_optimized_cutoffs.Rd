@@ -49,9 +49,9 @@ coefficient of variation (CV) of each cell or sample.
 \examples{
 # Set 'weight_by_gene_count' to TRUE is recommended for estimating the optimized cut-offs
 
-start_time = proc.time()
+start_time <- proc.time()
 
-estimated_cutoffs = estimate_optimized_cutoffs(
+estimated_cutoffs <- estimate_optimized_cutoffs(
   data_exp_mat = edgeR::cpm(example_dge_data$counts,
                             log = TRUE),
   anno_signature_genes = anno_signature_genes_mouse,
@@ -63,13 +63,13 @@ estimated_cutoffs = estimate_optimized_cutoffs(
   n_cores = 2
 )
 
-end_time = proc.time() - start_time
+end_time <- proc.time() - start_time
 
 end_time[3]
 
 estimated_cutoffs
 
-data_for_ternary = generate_data_for_ternary(
+data_for_ternary <- generate_data_for_ternary(
   data_exp_mat = edgeR::cpm(example_dge_data$counts,
                             log = TRUE),
   anno_signature_genes = anno_signature_genes_mouse,

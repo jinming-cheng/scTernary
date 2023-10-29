@@ -44,7 +44,7 @@ library(scTernary)
 # Generate data for ternary plots
 # using a CPM matrix and a CPM cut-off of 100
 
-data_for_ternary = generate_data_for_ternary(
+data_for_ternary <- generate_data_for_ternary(
   data_exp_mat = edgeR::cpm(example_dge_data$counts,
                             log = FALSE),
   anno_signature_genes = anno_signature_genes_mouse,
