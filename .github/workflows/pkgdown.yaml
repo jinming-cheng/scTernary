@@ -32,8 +32,12 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::pkgdown, local::.
+          extra-packages: any::pkgdown, any::covr, local::.
           needs: website
+
+      - name: Test coverage
+        run: covr::codecov(type="all", commentDontrun=FALSE)
+        shell: Rscript {0}
 
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
