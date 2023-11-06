@@ -17,4 +17,19 @@ test_that("Test estimate_optimized_cutoffs", {
 
   expect_false(NA %in% estimated_cutoffs )
 
+  estimated_cutoffs2 <- estimate_optimized_cutoffs(
+    data_exp_mat = lcpm,
+    anno_signature_genes = anno_signature_genes_mouse,
+    gene_name_col = "GeneID",
+    gene_type_col = "gene_type",
+    weight_by_gene_count = TRUE,
+    prior_count = 2,
+    do_parallel = FALSE,
+    n_cores = NULL
+  )
+
+  expect_equal(length(estimated_cutoffs2),ncol(lcpm))
+
+  expect_false(NA %in% estimated_cutoffs2 )
+
 })
