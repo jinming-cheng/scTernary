@@ -114,7 +114,7 @@ estimate_optimized_cutoffs <- function(data_exp_mat = NULL,
 
     # do parallel
     if( is.null(n_cores) || !(is.numeric(n_cores)) ){
-      n_cores <- parallel::detectCores(logical = TRUE)/2
+      n_cores <- ceiling(parallel::detectCores(logical = TRUE)/2)
     }
 
     cl <- parallel::makeCluster(n_cores)
