@@ -1,51 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/404.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/articles/scTernary.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/index.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/reference/anno_signature_genes_mouse.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/reference/calculate_cv_by_row.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/reference/estimate_optimized_cutoffs.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/reference/example_dge_data.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/reference/example_seu.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/reference/generate_data_for_ternary.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/reference/prepare_layout_matrix.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jinming-cheng/scTernary/reference/vcdTernaryPlot_functions.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://github.com/jinming-cheng/scTernary/404.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/LICENSE-text.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/LICENSE.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/articles/index.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/articles/scTernary.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/authors.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/index.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/reference/anno_signature_genes_mouse.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/reference/calculate_cv_by_row.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/reference/estimate_optimized_cutoffs.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/reference/example_dge_data.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/reference/example_seu.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/reference/generate_data_for_ternary.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/reference/index.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/reference/prepare_layout_matrix.html</loc></url>
+<url><loc>https://github.com/jinming-cheng/scTernary/reference/vcdTernaryPlot_functions.html</loc></url>
 </urlset>
+
