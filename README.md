@@ -11,7 +11,7 @@ coverage](https://codecov.io/gh/jinming-cheng/scTernary/branch/main/graph/badge.
 
 The goal of scTernary is to perform ternary plot analysis for single
 cell RNA-Seq data. The vignette can be found
-[here](https://jinming-cheng.github.io/scTernary/articles/scTernary.html)
+[here](https://jinming-cheng.github.io/scTernary/articles/scTernary.html).
 
 ## Installation
 
