@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 ```
 
 # Introduction
-Ternary plot is a good method to visualize three-dimensional data. scTernary is an easy and user friendly package to show three different single cell populations as well as the potential intermediate cell populations on the ternary plot. 
+Ternary plot is a good method to visualize three-dimensional data. *scTernary* is an easy and user friendly package to show three different single cell populations as well as the potential intermediate cell populations on the ternary plot. The ternary plot method can also be utilized to investigate cell lineage segregation.
 
 # Installation
 
@@ -92,7 +92,7 @@ scTernary::vcdTernaryPlot(data_for_ternary,
 ```
 
 
-# Ternary plot analysis for cell lineage segregation analysis
+# Ternary plot analysis for exploring cell lineage segregation
 
 The public 10x scRNA-seq data of mouse mammary epithelial cells at different stages reanalyzed by [Cheng et al. 2023. F1000Res.](https://f1000research.com/articles/12-684/v2) can be used to investigate cell lineage segregation or commitment. The ternary plot analysis suggests that the lineages of mammary epithelial cells are segregated at post-natal 5 days (P5).
 
@@ -114,7 +114,7 @@ Ternary plots of mouse mammary epithelium samples at five different stages. The 
 n_col = 3
 n_row = 2
 n_scale_legend = 2
-fig_width = 2*3 + 1*n_scale_legend
+fig_width = 2*n_col + 1*n_scale_legend
 fig_height = 2*n_row
 
 # png(filename = "TernaryPlot.png",width = fig_width,height = fig_height,units = "in",res = 300)
@@ -126,7 +126,7 @@ vcdTernaryPlot(data = data_for_ternary_Cheng,
   show_legend = TRUE,
   legend_point_size = 0.6,
   legend_position = c(0.4,0.5),
-  scale_legend = 2)
+  scale_legend = n_scale_legend)
 # dev.off()
 ```
 
