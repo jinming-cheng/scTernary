@@ -85,9 +85,10 @@ Australia<br><h4 data-toc-skip class="date">2025-04-04</h4>
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>Ternary plot is a good method to visualize three-dimensional data.
-scTernary is an easy and user friendly package to show three different
-single cell populations as well as the potential intermediate cell
-populations on the ternary plot.</p>
+<em>scTernary</em> is an easy and user friendly package to show three
+different single cell populations as well as the potential intermediate
+cell populations on the ternary plot. The ternary plot method can also
+be utilized to investigate cell lineage segregation.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -168,7 +169,7 @@ easily observed by using the ternary plot method.</p>
 <p><img src="scTernary_files/figure-html/unnamed-chunk-8-1.png" width="100%"></p>
 </div>
 <div class="section level2">
-<h2 id="ternary-plot-analysis-for-cell-lineage-segregation-analysis">Ternary plot analysis for cell lineage segregation analysis<a class="anchor" aria-label="anchor" href="#ternary-plot-analysis-for-cell-lineage-segregation-analysis"></a>
+<h2 id="ternary-plot-analysis-for-exploring-cell-lineage-segregation">Ternary plot analysis for exploring cell lineage segregation<a class="anchor" aria-label="anchor" href="#ternary-plot-analysis-for-exploring-cell-lineage-segregation"></a>
 </h2>
 <p>The public 10x scRNA-seq data of mouse mammary epithelial cells at
 different stages reanalyzed by <a href="https://f1000research.com/articles/12-684/v2" class="external-link">Cheng et al. 2023.
@@ -206,7 +207,7 @@ are fewer luminal-intermediate cells than pre-puberty stage.</p>
 <span><span class="va">n_col</span> <span class="op">=</span> <span class="fl">3</span></span>
 <span><span class="va">n_row</span> <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="va">n_scale_legend</span> <span class="op">=</span> <span class="fl">2</span></span>
-<span><span class="va">fig_width</span> <span class="op">=</span> <span class="fl">2</span><span class="op">*</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">1</span><span class="op">*</span><span class="va">n_scale_legend</span></span>
+<span><span class="va">fig_width</span> <span class="op">=</span> <span class="fl">2</span><span class="op">*</span><span class="va">n_col</span> <span class="op">+</span> <span class="fl">1</span><span class="op">*</span><span class="va">n_scale_legend</span></span>
 <span><span class="va">fig_height</span> <span class="op">=</span> <span class="fl">2</span><span class="op">*</span><span class="va">n_row</span></span>
 <span></span>
 <span><span class="co"># png(filename = "TernaryPlot.png",width = fig_width,height = fig_height,units = "in",res = 300)</span></span>
@@ -218,7 +219,7 @@ are fewer luminal-intermediate cells than pre-puberty stage.</p>
 <span>  show_legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  legend_point_size <span class="op">=</span> <span class="fl">0.6</span>,</span>
 <span>  legend_position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span>,<span class="fl">0.5</span><span class="op">)</span>,</span>
-<span>  scale_legend <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<span>  scale_legend <span class="op">=</span> <span class="va">n_scale_legend</span><span class="op">)</span></span></code></pre></div>
 <p><img src="scTernary_files/figure-html/TernaryPlotCheng2023F1000Res-1.png" width="100%"></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># dev.off()</span></span></code></pre></div>
